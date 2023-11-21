@@ -146,14 +146,16 @@ GROUP BY aut.nome
 ORDER BY (maiorValor) DESC
 
 -- 11
-SELECT comp.codigo, comp.qtdComprada, (comp.qtdComprada * comp.valor) AS somaTotal
+SELECT comp.codigo, comp.qtdComprada, (SUM(comp.valor)) AS somaTotal
 FROM compra comp
+GROUP BY comp.codigo, comp.valor, comp.qtdComprada
 ORDER BY (comp.codigo) ASC
 
 -- 12
-SELECT edi.nome, (est.valor / est.quantidade ) AS mediaEstoque
+SELECT edi.nome, (AVG(est.valor)) AS mediaEstoque
 FROM editora edi, estoque est
 WHERE est.codEditora = edi.codigo
+GROUP BY est.valor, edi.nome
 
 -- 13
 SELECT est.nome, est.quantidade, edi.nome,
