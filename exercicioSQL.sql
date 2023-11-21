@@ -132,7 +132,7 @@ WHERE est.codEditora IS NULL
 -- 9
 SELECT aut.nome,
 	CASE WHEN(aut.biografia LIKE 'Doutorado%') THEN
-	('Ph.D.' + SUBSTRING(aut.biografia, 11, LEN(aut.biografia)-10))
+	('Ph.D.' + SUBSTRING(aut.biografia, 11, LEN(aut.biografia)))
 	ELSE aut.biografia END AS autorBiografia
 FROM estoque est RIGHT OUTER JOIN autor aut
 ON est.codAutor = aut.codigo 
